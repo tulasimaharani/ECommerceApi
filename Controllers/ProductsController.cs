@@ -10,18 +10,25 @@ namespace ECommerceApi.Controllers
     public class ProductsController : ControllerBase
     {
 
+        //Testing GET methods
+        private readonly MockECommerceRepository _repository =  new MockECommerceRepository();  
+
         //GET api/produtos
         [HttpGet]
         public ActionResult<IEnumerable<Product>> GetAllProducts()
         {
-            return Ok();
+            var produtos = _repository.GetProducts();
+
+            return Ok(produtos);
         }
 
         //GET api/produtos/{id}
         [HttpGet("{id}")]
         public ActionResult<Product> GetProductById(int id)
         {
-            return Ok();
+            var produto = _repository.GetProductById(id);
+            
+            return Ok(produto);
         }
     }
 }
