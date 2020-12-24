@@ -7,16 +7,16 @@ namespace ECommerceApi.Data
     {
         public Product GetProductById(int id)
         {
-            return new Product(id:1, nome:"pao", valor_unitario:7.32, qtde_estoque:15);
+            return new Product(Id:1, Nome:"pao", ValorUnitario:7.32, QuantidadeEstoque:15);
         }
 
         public IEnumerable<Product> GetProducts()
         {
             var products = new List<Product>
             {
-                new Product(id:1, nome:"bolacha", valor_unitario:3.45, qtde_estoque:45),
-                new Product(id:2, nome:"farinha", valor_unitario:5.50, qtde_estoque:12),
-                new Product(id:3, nome:"cafe", valor_unitario:4.85, qtde_estoque:50)
+                new Product(Id:1, Nome:"bolacha", ValorUnitario:3.45, QuantidadeEstoque:45),
+                new Product(Id:2, Nome:"farinha", ValorUnitario:5.50, QuantidadeEstoque:12),
+                new Product(Id:3, Nome:"cafe", ValorUnitario:4.85, QuantidadeEstoque:50)
             };
 
             return products;

@@ -1,18 +1,24 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ECommerceApi.Models
 {
     public class Product
     {
+        [Key]
         public int Id { get; set; }
+        [Required]
         public string Nome{ get; set; }
+        [Required]
         public double ValorUnitario{ get; set; }
+        [Required]
         public int QuantidadeEstoque{ get; set; }
 
-        public Product(int id, string nome, double valor_unitario, int qtde_estoque)
+        public Product(int Id, string Nome, double ValorUnitario, int QuantidadeEstoque)
         {
-            Id = id;
-            Nome = nome;
-            ValorUnitario = valor_unitario;
-            QuantidadeEstoque = qtde_estoque;
+            this.Id = Id;
+            this.Nome = Nome;
+            this.ValorUnitario = ValorUnitario;
+            this.QuantidadeEstoque = QuantidadeEstoque;
         }
     }
 }

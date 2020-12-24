@@ -9,10 +9,13 @@ namespace ECommerceApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly IECommerceRepository _repository;
 
-        //Testing GET methods
-        private readonly MockECommerceRepository _repository =  new MockECommerceRepository();  
-
+        public ProductsController(IECommerceRepository repository)
+        {
+            _repository = repository;
+        }
+        
         //GET api/produtos
         [HttpGet]
         public ActionResult<IEnumerable<Product>> GetAllProducts()
