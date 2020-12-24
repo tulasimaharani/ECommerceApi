@@ -32,7 +32,10 @@ namespace ECommerceApi
             services.AddDbContext<ECommerceContext>(opt => opt.UseNpgsql
                 (Configuration.GetConnectionString("ECommerceConnection")));
 
-            services.AddScoped<IECommerceRepository, MockECommerceRepository>();
+           // services.AddScoped<IECommerceRepository, MockECommerceRepository>();
+
+            services.AddScoped<IECommerceRepository, SqlECommerceRepository>();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
