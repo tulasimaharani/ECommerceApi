@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AutoMapper;
 using ECommerceApi.Data;
 using ECommerceApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,9 @@ namespace ECommerceApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IECommerceRepository _repository;
+        private readonly IProductRepository _repository;
 
-        public ProductsController(IECommerceRepository repository)
+        public ProductsController(IProductRepository repository)
         {
             _repository = repository;
         }

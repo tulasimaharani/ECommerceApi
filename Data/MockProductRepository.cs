@@ -3,7 +3,7 @@ using ECommerceApi.Models;
 
 namespace ECommerceApi.Data
 {
-    public class MockECommerceRepository : IECommerceRepository
+    public class MockProductRepository : IProductRepository
     {
         public Product GetProductById(int id)
         {

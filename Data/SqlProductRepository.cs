@@ -4,11 +4,11 @@ using ECommerceApi.Models;
 
 namespace ECommerceApi.Data
 {
-    public class SqlECommerceRepository : IECommerceRepository
+    public class SqlProductRepository : IProductRepository
     {
         private readonly ECommerceContext _context;
 
-        public SqlECommerceRepository(ECommerceContext context) 
+        public SqlProductRepository(ECommerceContext context) 
         {
             _context = context;    
         }

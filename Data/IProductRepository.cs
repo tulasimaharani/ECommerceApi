@@ -3,7 +3,7 @@ using ECommerceApi.Models;
 
 namespace ECommerceApi.Data
 {
-    public interface IECommerceRepository
+    public interface IProductRepository
     {
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
