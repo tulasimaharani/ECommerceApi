@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ECommerceApi.Models;
@@ -16,6 +17,15 @@ namespace ECommerceApi.Data
         public void CreateProduct(Product product)
         {
             _context.Products.Add(product);                
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            if(product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            _context.Products.Remove(product);
         }
 
         public Product GetProductById(int id)

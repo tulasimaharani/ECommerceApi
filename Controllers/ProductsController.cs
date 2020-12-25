@@ -49,5 +49,20 @@ namespace ECommerceApi.Controllers
             
             return Ok(_mapper.Map<ProductReadDto>(productModel));            
         }
+
+        //DELETE api/produtos/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteProduct(int id)
+        {
+            var storedProduct = _repository.GetProductById(id);
+            if(storedProduct == null)
+            {
+                return BadRequest();
+            }
+            _repository.DeleteProduct(storedProduct);
+            _repository.SaveChanges();
+
+            return Ok();
+        }
     }
 }
