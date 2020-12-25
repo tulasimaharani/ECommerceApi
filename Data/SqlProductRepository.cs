@@ -12,6 +12,12 @@ namespace ECommerceApi.Data
         {
             _context = context;    
         }
+
+        public void CreateProduct(Product product)
+        {
+            _context.Products.Add(product);                
+        }
+
         public Product GetProductById(int id)
         {
             return _context.Products.FirstOrDefault(p => p.Id == id);
@@ -20,6 +26,11 @@ namespace ECommerceApi.Data
         public IEnumerable<Product> GetProducts()
         {
             return _context.Products.ToList();
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

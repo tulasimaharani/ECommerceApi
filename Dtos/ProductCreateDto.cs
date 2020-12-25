@@ -1,17 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceApi.Models
+namespace ECommerceApi.Dtos
 {
-    public class Product
+    public class ProductCreateDto
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Nome{ get; set; }
         [Required]
         public double ValorUnitario{ get; set; }
         [Required]
         public int QuantidadeEstoque{ get; set; }
-
     }
 }

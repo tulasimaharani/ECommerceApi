@@ -5,7 +5,9 @@ namespace ECommerceApi.Data
 {
     public interface IProductRepository
     {
+        bool SaveChanges();
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
+        void CreateProduct(Product product);
     }
 }
