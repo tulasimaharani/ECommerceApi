@@ -3,13 +3,13 @@ using ProductManagementApi.Models;
 
 namespace ProductManagementApi.Data
 {
-    public interface IProductRepository
+    public interface IProductManagerRepository
     {
         bool SaveChanges();
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
         void CreateProduct(Product product);
         void DeleteProduct(Product product);
-        void SellProduct(Product product);
+        void SellProduct(Sale sale);
     }
 }

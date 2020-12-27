@@ -5,11 +5,11 @@ using ProductManagementApi.Models;
 
 namespace ProductManagementApi.Data
 {
-    public class SqlProductRepository : IProductRepository
+    public class SqlProductManagerRepository : IProductManagerRepository
     {
         private readonly ProductManagerContext _context;
 
-        public SqlProductRepository(ProductManagerContext context) 
+        public SqlProductManagerRepository(ProductManagerContext context) 
         {
             _context = context;    
         }
@@ -45,9 +45,9 @@ namespace ProductManagementApi.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public void SellProduct(Product product)
+        public void SellProduct(Sale sale)
         {
-            
+            _context.Sales.Add(sale);
         }
     }
 }

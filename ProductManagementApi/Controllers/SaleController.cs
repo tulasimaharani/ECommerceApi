@@ -9,12 +9,12 @@ namespace ProductManagementApi.Controllers
 {
     [Route("api/compras")]
     [ApiController]
-    public class SellController : ControllerBase
+    public class SaleController : ControllerBase
     {
-        private IProductRepository _repository;
+        private IProductManagerRepository _repository;
         private IMapper _mapper;
 
-        public SellController(IProductRepository repository, IMapper mapper)
+        public SaleController(IProductManagerRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -30,16 +30,17 @@ namespace ProductManagementApi.Controllers
 
                 if(productModel == null)
                 {
-                    return BadRequest();
+                    throw new ArgumentException("Os valores informados não são válidos");
                 }
 
                 var productCreateDto = _mapper.Map<ProductCreateDto>(productModel);
                 productCreateDto.QuantidadeEstoque -= sale.QuantidadeComprada;
-                
-                _mapper.Map(productCreateDto, productModel);
 
-                _repository.SellProduct(productModel);
-                
+                sale.Data = DateTime.Now;
+                sale.Valor = sale.QuantidadeComprada * productCreateDto.ValorUnitario;
+
+                _mapper.Map(productCreateDto, productModel);
+                _repository.SellProduct(sale); 
                 _repository.SaveChanges();
 
                 return Ok("Venda realizada com sucesso");

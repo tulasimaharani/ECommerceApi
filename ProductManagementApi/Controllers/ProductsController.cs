@@ -12,10 +12,10 @@ namespace ProductManagementApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository _repository;
+        private readonly IProductManagerRepository _repository;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository repository, IMapper mapper)
+        public ProductsController(IProductManagerRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
