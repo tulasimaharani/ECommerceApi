@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceApi.Models
+namespace ProductManagementApi.Dtos
 {
-    public class Product
+    public class ProductReadDto
     {
         [Key]
         public int Id { get; set; }
@@ -12,6 +12,5 @@ namespace ECommerceApi.Models
         public double ValorUnitario{ get; set; }
         [Required]
         public int QuantidadeEstoque{ get; set; }
-
     }
 }

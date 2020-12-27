@@ -1,8 +1,8 @@
 using AutoMapper;
-using ECommerceApi.Models;
-using ECommerceApi.Dtos;
+using ProductManagementApi.Models;
+using ProductManagementApi.Dtos;
 
-namespace ECommerceApi.Profiles
+namespace ProductManagementApi.Profiles
 {
     public class ProductProfile : Profile
     {

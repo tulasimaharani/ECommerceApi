@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using ECommerceApi.Data;
-using ECommerceApi.Dtos;
-using ECommerceApi.Models;
+using ProductManagementApi.Data;
+using ProductManagementApi.Dtos;
+using ProductManagementApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerceApi.Controllers
+namespace ProductManagementApi.Controllers
 {
     [Route("api/produtos")]
     [ApiController]

@@ -1,7 +1,7 @@
-using ECommerceApi.Models;
+using ProductManagementApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerceApi.Data
+namespace ProductManagementApi.Data
 {
     public class ECommerceContext : DbContext
     {

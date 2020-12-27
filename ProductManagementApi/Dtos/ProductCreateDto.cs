@@ -1,11 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceApi.Dtos
+namespace ProductManagementApi.Dtos
 {
-    public class ProductReadDto
+    public class ProductCreateDto
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Nome{ get; set; }
         [Required]
