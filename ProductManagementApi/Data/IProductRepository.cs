@@ -10,5 +10,6 @@ namespace ProductManagementApi.Data
         Product GetProductById(int id);
         void CreateProduct(Product product);
         void DeleteProduct(Product product);
+        void SellProduct(Product product);
     }
 }

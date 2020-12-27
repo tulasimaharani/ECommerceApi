@@ -44,5 +44,10 @@ namespace ProductManagementApi.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void SellProduct(Product product)
+        {
+            
+        }
     }
 }

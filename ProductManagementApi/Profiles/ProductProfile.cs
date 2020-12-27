@@ -9,6 +9,7 @@ namespace ProductManagementApi.Profiles
         public ProductProfile()
         {
             CreateMap<Product, ProductReadDto>();
+            CreateMap<Product, ProductCreateDto>();
             CreateMap<ProductCreateDto, Product>();
             CreateMap<ProductShowDto, Product>();
             CreateMap<Product, ProductShowDto>();
