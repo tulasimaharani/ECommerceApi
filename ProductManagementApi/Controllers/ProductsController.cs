@@ -27,7 +27,7 @@ namespace ProductManagementApi.Controllers
         {
             var products = _repository.GetProducts();
 
-            return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
+            return Ok(_mapper.Map<IEnumerable<ProductShowDto>>(products));
         }
 
         //GET api/produtos/{id}

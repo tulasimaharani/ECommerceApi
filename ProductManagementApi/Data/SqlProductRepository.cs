@@ -35,7 +35,9 @@ namespace ProductManagementApi.Data
 
         public IEnumerable<Product> GetProducts()
         {
-            return _context.Products.ToList();
+            return _context.Products
+                .Where(p => p.QuantidadeEstoque > 0)
+                .ToList();
         }
 
         public bool SaveChanges()

@@ -10,6 +10,8 @@ namespace ProductManagementApi.Profiles
         {
             CreateMap<Product, ProductReadDto>();
             CreateMap<ProductCreateDto, Product>();
+            CreateMap<ProductShowDto, Product>();
+            CreateMap<Product, ProductShowDto>();
         }
     }
 }
