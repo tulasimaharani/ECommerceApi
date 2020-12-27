@@ -7,9 +7,9 @@ namespace ProductManagementApi.Data
 {
     public class SqlProductRepository : IProductRepository
     {
-        private readonly ECommerceContext _context;
+        private readonly ProductManagerContext _context;
 
-        public SqlProductRepository(ECommerceContext context) 
+        public SqlProductRepository(ProductManagerContext context) 
         {
             _context = context;    
         }

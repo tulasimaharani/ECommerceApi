@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProductManagementApi.Data
 {
-    public class ECommerceContext : DbContext
+    public class ProductManagerContext : DbContext
     {
-        public ECommerceContext(DbContextOptions<ECommerceContext> opt) : base(opt)
+        public ProductManagerContext(DbContextOptions<ProductManagerContext> opt) : base(opt)
         {
             
         }
@@ -13,7 +13,5 @@ namespace ProductManagementApi.Data
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Sale> Sales { get; set; }
-
-        public DbSet<Card> Cards { get; set; }
     }
 }

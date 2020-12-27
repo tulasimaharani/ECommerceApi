@@ -24,7 +24,7 @@ namespace ProductManagementApi
         {
             services.AddControllers();
 
-            services.AddDbContext<ECommerceContext>(opt => opt.UseNpgsql
+            services.AddDbContext<ProductManagerContext>(opt => opt.UseNpgsql
                 (Configuration.GetConnectionString("ECommerceConnection")));
 
             services.AddScoped<IProductRepository, SqlProductRepository>();
