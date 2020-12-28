@@ -5,6 +5,8 @@ using ProductManagementApi.Data;
 using ProductManagementApi.Dtos;
 using ProductManagementApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Http;
 
 namespace ProductManagementApi.Controllers
 {
@@ -22,12 +24,21 @@ namespace ProductManagementApi.Controllers
         }
         
         //GET api/produtos
+        /// <summary>
+        /// Get all the products available for sale
+        /// </summary>
+        /// <returns>A list of products</returns>
         [HttpGet]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<ProductReadDto>> GetAllProducts()
         {
             try
             {
                 var products = _repository.GetProducts();
+                if(products == null)
+                    return BadRequest();
 
                 return Ok(_mapper.Map<IEnumerable<ProductShowDto>>(products));
             }
@@ -38,12 +49,22 @@ namespace ProductManagementApi.Controllers
         }
 
         //GET api/produtos/{id}
+        /// <summary>
+        /// Get a product by id
+        /// </summary>
+        /// <param name="id">Product id</param>
+        /// <returns>A product</returns>
         [HttpGet("{id}")]
-        public ActionResult<ProductReadDto> GetProductById(int id)
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<ProductReadDto> GetProductById([FromRoute] int id)
         {
             try
             {
                 var product = _repository.GetProductById(id);
+                if(product == null)
+                    return BadRequest();
                 
                 return Ok(_mapper.Map<ProductReadDto>(product));
             }
@@ -54,8 +75,15 @@ namespace ProductManagementApi.Controllers
         }
 
         //POST api/produtos
+        /// <summary>
+        /// Create a new product
+        /// </summary>
         [HttpPost]
-        public ActionResult<ProductReadDto> CreateProduct(ProductCreateDto productCreateDto)
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status412PreconditionFailed)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<ProductReadDto> CreateProduct([FromBody] ProductCreateDto productCreateDto)
         {
             try
             {
@@ -77,8 +105,13 @@ namespace ProductManagementApi.Controllers
         }
 
         //DELETE api/produtos/{id}
+        /// <summary>
+        /// Remove a product from the database
+        /// </summary>
         [HttpDelete("{id}")]
-        public ActionResult DeleteProduct(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult DeleteProduct([FromRoute] int id)
         {
             try
             {

@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace ProductManagementApi
 {
@@ -30,6 +32,14 @@ namespace ProductManagementApi
             services.AddScoped<IProductManagerRepository, SqlProductManagerRepository>();
         
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductManagementApi", Version = "v1" });
+                
+                var xmlFilePath = Path.Combine(AppContext.BaseDirectory, 
+                $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml");
+                c.IncludeXmlComments(xmlFilePath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +51,12 @@ namespace ProductManagementApi
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product Management API V1");
+            });
 
             app.UseRouting();
 

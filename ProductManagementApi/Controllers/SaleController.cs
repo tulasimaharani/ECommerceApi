@@ -4,6 +4,8 @@ using ProductManagementApi.Dtos;
 using ProductManagementApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Http;
 
 namespace ProductManagementApi.Controllers
 {
@@ -21,21 +23,28 @@ namespace ProductManagementApi.Controllers
         }
 
         //POST api/compras
+        /// <summary>
+        /// Sell a product
+        /// </summary>
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status412PreconditionFailed)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult SellProducts(Sale sale)
         {
-            try{
+            try
+            {
                 var id = sale.ProdutoId;
                 var productModel = _repository.GetProductById(id);
 
                 if(productModel == null)
                 {
-                    throw new ArgumentException("Os valores informados não são válidos");
+                    return BadRequest("Os valores informados não são válidos");
                 }
 
                 var productCreateDto = _mapper.Map<ProductCreateDto>(productModel);
                 productCreateDto.QuantidadeEstoque -= sale.QuantidadeComprada;
-
                 sale.Data = DateTime.Now;
                 sale.Valor = sale.QuantidadeComprada * productCreateDto.ValorUnitario;
 
@@ -52,7 +61,7 @@ namespace ProductManagementApi.Controllers
             catch(Exception)
             {
                 return BadRequest("Ocorreu um erro desconhecido");
-            }            
+            }        
         }
     }
 }

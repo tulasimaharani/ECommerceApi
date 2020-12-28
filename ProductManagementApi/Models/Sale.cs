@@ -6,6 +6,8 @@ namespace ProductManagementApi.Models
     public class Sale
     {
         [Key]
+        public int Id { get; set; }
+        [Required]
         public int ProdutoId { get; set; }
         [Required]
         public int QuantidadeComprada { get; set; }
