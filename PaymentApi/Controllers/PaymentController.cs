@@ -1,5 +1,7 @@
 using System;
+using System.Net.Mime;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PaymentApi.Data;
 using PaymentApi.Dtos;
@@ -21,12 +23,19 @@ namespace PaymentApi.Controllers
         }
 
         //POST api/pagamento/compras
+        /// <summary>
+        /// Approve the payment of a sale
+        /// </summary>
         [HttpPost]
-        public ActionResult<PaymentShowDto> ApprovePayment(PaymentReadDto paymentReadDto)
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status412PreconditionFailed)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<PaymentShowDto> ApprovePayment([FromBody] PaymentReadDto paymentCreateDto)
         {
             try
             {
-                var paymentModel = _mapper.Map<Payment>(paymentReadDto);
+                var paymentModel = _mapper.Map<Payment>(paymentCreateDto);
 
                 if(paymentModel.Valor >= 100)
                 {

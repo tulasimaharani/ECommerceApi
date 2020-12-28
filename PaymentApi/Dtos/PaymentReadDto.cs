@@ -9,6 +9,5 @@ namespace PaymentApi.Dtos
         public double Valor { get; set; }
         [Required]
         public Card Cartao { get; set; }
-        public string Estado { get; set; }
     }
 }
