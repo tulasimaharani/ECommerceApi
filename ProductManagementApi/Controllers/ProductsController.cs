@@ -50,23 +50,30 @@ namespace ProductManagementApi.Controllers
 
         //GET api/produtos/{id}
         /// <summary>
-        /// Get a product by id
+        /// Get a product by id with date and value of last sale
         /// </summary>
         /// <param name="id">Product id</param>
         /// <returns>A product</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<ProductReadDto> GetProductById([FromRoute] int id)
+        public ActionResult<ProductShowOneDto> GetProductByIdWithLastSale([FromRoute] int id)
         {
             try
             {
-                var product = _repository.GetProductById(id);
+                var product = _repository.GetProductByIdWithLastSale(id);
+                if(product == null)
+                {
+                    var productModel = _repository.GetProductById(id);
+                    product = _mapper.Map(productModel, product);
+                    
+                }
+
                 if(product == null)
                     return BadRequest();
-                
-                return Ok(_mapper.Map<ProductReadDto>(product));
+
+                return Ok(_mapper.Map<ProductShowOneDto>(product));
             }
             catch(Exception)
             {
@@ -108,7 +115,7 @@ namespace ProductManagementApi.Controllers
         /// <summary>
         /// Remove a product from the database
         /// </summary>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult DeleteProduct([FromRoute] int id)

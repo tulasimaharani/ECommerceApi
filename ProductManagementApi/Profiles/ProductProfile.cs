@@ -13,6 +13,7 @@ namespace ProductManagementApi.Profiles
             CreateMap<ProductCreateDto, Product>();
             CreateMap<ProductShowDto, Product>();
             CreateMap<Product, ProductShowDto>();
+            CreateMap<Product, ProductShowOneDto>();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProductManagementApi.Dtos;
 using ProductManagementApi.Models;
 
 namespace ProductManagementApi.Data
@@ -28,7 +29,28 @@ namespace ProductManagementApi.Data
             _context.Products.Remove(product);
         }
 
-        public Product GetProductById(int id)
+        public ProductShowOneDto GetProductByIdWithLastSale(int id)
+        {
+            var product = _context.Products
+            .Join(_context.Sales, p => p.Id, s => s.ProdutoId,
+                (p, s) => new ProductShowOneDto
+                {
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    QuantidadeEstoque = p.QuantidadeEstoque,
+                    ValorUnitario = p.ValorUnitario,
+                    Data = s.Data,
+                    Valor = s.Valor
+                }
+            ).Where(p => p.Id == id)
+            .OrderBy(p => p.Data);            
+
+            if(product.Count() != 0)
+                return product.Last();
+
+            return null;
+        }
+         public Product GetProductById(int id)
         {
             return _context.Products.FirstOrDefault(p => p.Id == id);
         }
